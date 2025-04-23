@@ -1,8 +1,8 @@
 // layouts/MainLayout.tsx
-import Header from '../components/Header';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import { ReactNode } from 'react';
+import Header from "../components/Header";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import { ReactNode } from "react";
 
 interface MainLayoutProps {
   children: ReactNode;

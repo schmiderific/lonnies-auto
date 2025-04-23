@@ -1,40 +1,70 @@
-// components/Footer.tsx
-export default function Footer() {
-    return (
-      <>
-        <footer id="contact" class="bg-blue-900 text-white py-12">
-        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto px-4">
-          
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">Contact Us</h3>
-            <p class="mb-2">📍 123 Main St, Anytown, USA</p>
-            <p class="mb-2">📞 <a href="tel:1234567890" class="underline">123-456-7890</a></p>
-            <p class="mb-4">✉️ <a href="mailto:info@lonnieauto.com" class="underline">info@lonnieauto.com</a></p>
-            <p class="text-sm text-gray-300 mt-6">© 2025 Lonnie's University Auto. All rights reserved.</p>
-          </div>
+import React, { useState } from "react";
 
-          <form class="bg-white rounded-lg p-6 text-gray-800 shadow" method="POST" action="/contact">
-            <h3 class="text-xl font-semibold mb-4">Send a Message</h3>
-            <div class="mb-4">
-              <label class="block mb-1 font-medium" for="name">Name</label>
-              <input type="text" id="name" name="name" required class="w-full border-gray-300 rounded p-2" />
-            </div>
-            <div class="mb-4">
-              <label class="block mb-1 font-medium" for="email">Email</label>
-              <input type="email" id="email" name="email" required class="w-full border-gray-300 rounded p-2" />
-            </div>
-            <div class="mb-4">
-              <label class="block mb-1 font-medium" for="message">Message</label>
-              <textarea id="message" name="message" rows="4" required class="w-full border-gray-300 rounded p-2"></textarea>
-            </div>
-            <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
-              Send
+// components/Footer.tsx
+const GetDirections = () => {
+  const [origin, setOrigin] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!origin) return;
+
+    const destination = encodeURIComponent(
+      "220 Butler Avenue, Durham, NC 27705",
+    );
+    const encodedOrigin = encodeURIComponent(origin);
+    // const url = `https://www.google.com/maps/dir/?api=1&origin=${encodedOrigin}&destination=${destination}`;
+    const url = `/Directions?api=1&origin=${encodedOrigin}&destination=${destination}`;
+
+    window.open(url, "_blank");
+  };
+
+  return (
+    <footer id="contact" className="py-12 text-white bg-blue-900">
+      <div className="grid md:grid-cols-2 max-w-6xl mx-auto px-4 gap-12">
+        <div>
+          <h3 className="mb-4 text-2xl font-semibold">Contact Us</h3>
+          <p className="mb-2">📍 220 Butler Avenue, Durham, NC, USA</p>
+          <p className="mb-2">
+            📞{" "}
+            <a href="tel:9193097898" className="underline">
+              919-309-7898
+            </a>
+          </p>
+          <p className="mt-6 text-sm text-gray-300">
+            © 2025 Lonnie's University Auto. All rights reserved.
+          </p>
+        </div>
+        <div>
+          <h2 className="mb-4 text-2xl font-bold">Get Directions</h2>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row mt-4 gap-2 sm:items-center"
+          >
+            <input
+              type="text"
+              placeholder="Enter your address"
+              value={origin}
+              onChange={(e) => setOrigin(e.target.value)}
+              className="
+                flex-1
+                w-full sm:w-auto
+                px-4 py-2
+                text-gray-900 placeholder-gray-500
+                rounded-lg border border-gray-300
+                focus:outline-none focus:ring-2 focus:ring-blue-500
+              "
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+            >
+              Go
             </button>
           </form>
-
         </div>
-      </footer>
-      </>
-    );
-  }
-  
+      </div>
+    </footer>
+  );
+};
+
+export default GetDirections;
