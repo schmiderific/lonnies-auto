@@ -20,23 +20,23 @@ export default function Directions() {
 
         <div className="space-y-4 text-lg text-gray-700">
           <p>
-            Our shop is conveniently located in Durham, NC, just off I-85.
-            Whether you're coming from downtown, RTP, or Chapel Hill, getting to
-            us is easy.
+            Our shop is conveniently located in Durham, NC, just off 15-501 and
+            Hillsborough Rd. Whether you're coming from downtown, RTP, or Chapel
+            Hill, getting to us is easy.
           </p>
           <p>
             Address:
             <br />
             <span className="font-semibold">
-              1234 Main Street
+              220 Butler Ave.
               <br />
               Durham, NC 27705
             </span>
           </p>
           <p>
             Phone:{" "}
-            <a href="tel:1234567890" className="text-blue-600 hover:underline">
-              (123) 456-7890
+            <a href="tel:9193097898" className="text-blue-600 hover:underline">
+              (919) 309-7898
             </a>
           </p>
         </div>
@@ -56,14 +56,23 @@ export default function Directions() {
             Driving Directions
           </h2>
           <p>
-            <span className="font-semibold">From I-85:</span> Take exit 175,
-            turn east on Guess Road, then left on Main Street. We're just past
-            the shopping center on the right.
+            <span className="font-semibold">From I-85:</span>
+            Take <span className="font-semibold">Exit 105A</span> onto{" "}
+            <span className="font-semibold">15-501 South</span>. Take the{" "}
+            <span className="font-semibold">first exit</span> for{" "}
+            <span className="font-semibold">Hillsborough Road</span> and turn{" "}
+            <span className="font-semibold">right</span> at the end of the ramp.
+            Then take the <span className="font-semibold">next right</span> onto{" "}
+            <span className="font-semibold">Christian Avenue</span>. Make a{" "}
+            <span className="font-semibold">right on Wortham Street</span> and
+            follow it to the end. Turn{" "}
+            <span className="font-semibold">left onto Butler Avenue</span> —
+            we’ll be just down the road.
           </p>
           <p>
             <span className="font-semibold">From Downtown Durham:</span> Head
-            north on Duke Street, then west on Main. We're about 10 minutes from
-            downtown.
+            north on Duke Street, then west on Hillsborough. Take the same
+            directions as above after you cross over 15-501.
           </p>
         </div>
       </div>

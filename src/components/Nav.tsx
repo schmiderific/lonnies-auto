@@ -20,6 +20,11 @@ export default function Nav() {
             </a>
           </li>
           <li>
+            <a href="/directions" className="hover:underline">
+              Directions
+            </a>
+          </li>
+          <li>
             <a href="#contact" className="hover:underline">
               Contact
             </a>
