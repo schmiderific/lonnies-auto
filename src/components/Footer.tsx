@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const [origin, setOrigin] = useState("");
   const navigate = useNavigate();
-  const [isEditable, setIsEditable] = useState(false);
 
-  const handleSubmit = () => {
+  const handleGetDirections = () => {
     if (origin.trim() !== "") {
       const originEncoded = encodeURIComponent(origin);
       navigate(`/directions?mapfrom=${originEncoded}`);
@@ -17,7 +16,7 @@ const Footer = () => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleSubmit();
+      handleGetDirections();
     }
   };
 
@@ -39,29 +38,24 @@ const Footer = () => {
         </div>
         <div>
           <h2 className="mb-4 text-2xl font-bold">Get Directions</h2>
-          <div className="flex flex-col sm:flex-row gap-2 w-full max-w-lg">
-            <input
-              type="text"
-              placeholder="Enter your address"
-              value={origin}
-              onChange={(e) => setOrigin(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onFocus={() => setIsEditable(true)}
-              readOnly={!isEditable}
-              className="border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              autoComplete="off"
-              inputMode="text"
-              name="address-input"
-              aria-label="Starting Address"
-            />
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded min-w-[150px]"
-            >
-              Get Directions
-            </button>
-          </div>
+          <div className="flex w-full max-w-4xl mb-4 gap-2">
+          <input
+            type="text"
+            placeholder="Enter your starting address"
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="border p-2 rounded w-full"
+            autoComplete="off"
+            inputMode="text"
+          />
+          <button
+            onClick={handleGetDirections}
+            className="bg-blue-600 text-white p-2 rounded"
+          >
+            Get Directions
+          </button>
+        </div>
         </div>
       </div>
     </footer>

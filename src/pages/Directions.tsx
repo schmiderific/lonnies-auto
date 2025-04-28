@@ -1,36 +1,50 @@
 // Home.tsx
 import { Helmet } from "react-helmet";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { GoogleMap, LoadScript, DirectionsRenderer, Marker } from "@react-google-maps/api";
 
 export default function Directions() {
-  const [origin, setOrigin] = useState("");
-  const [mapSrc, setMapSrc] = useState("");
+  const [searchParams] = useSearchParams();
   const location = useLocation();
+  const [origin, setOrigin] = useState<string>("");
+  const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
+  const destinationLatLng = { lat: 36.02318, lng: -78.94929 }; // Shop's Lat/Long
   const destination = "220 Butler Ave, Durham, NC, 27705"; // Shop's actual address
   const apiKey = "AIzaSyBZapVwghZDS3WL_eudPVBgmWRHB-dCGEQ"; // Your API key here
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const mapFrom = searchParams.get("mapfrom");
+  const fetchDirections = async (start: string) => {
+    if (!start || !isMapLoaded) return;
+    const directionsService = new google.maps.DirectionsService();
 
+    directionsService.route(
+      {
+        origin: start,
+        destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK && result) {
+          setDirections(result);
+        } else {
+          console.error("Directions request failed:", status);
+        }
+      }
+    );
+  };
+
+  useEffect(() => {
+    const mapFrom = searchParams.get("mapfrom") || "";
     if (mapFrom) {
       setOrigin(mapFrom);
-      updateMap(mapFrom);
+      if (mapFrom && isMapLoaded) {
+        fetchDirections(mapFrom);
+      }
     }
-  }, [location.search]);
-
-  const updateMap = (start: string) => {
-    const originEncoded = encodeURIComponent(start);
-    const destinationEncoded = encodeURIComponent(destination);
-    const newMapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${originEncoded}&destination=${destinationEncoded}`;
-    setMapSrc(newMapSrc);
-  };
-
-  const handleGetDirections = () => {
-    updateMap(origin);
-  };
+  }, [location.search, isMapLoaded]);
 
   return (
     <>
@@ -43,39 +57,67 @@ export default function Directions() {
         <meta property="og:title" content="Home Page Title" />
         {/* Add more meta tags as needed */}
       </Helmet>
-      <div className="min-h-screen flex flex-col items-center justify-start p-6 space-y-6">
-        <h1 className="text-3xl font-bold">Get Directions</h1>
-
-        <div className="w-full max-w-md flex gap-2">
-          <input
-            type="text"
-            placeholder="Enter your address"
-            value={origin}
-            onChange={(e) => setOrigin(e.target.value)}
-            className="border p-2 rounded w-full"
-          />
-          <button
-            onClick={handleGetDirections}
-            className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded"
-          >
-            Get Directions
-          </button>
-        </div>
-
-        {mapSrc && (
-          <div className="w-full max-w-4xl h-[500px] mt-6">
-            <iframe
-              title="Google Map Directions"
-              width="100%"
-              height="100%"
-              loading="lazy"
-              allowFullScreen
-              src={mapSrc}
-              className="rounded shadow-lg"
-            ></iframe>
-          </div>
-        )}
+      <div className="flex flex-col items-center p-4">
+      <div className="flex w-full max-w-4xl mb-4 gap-2">
+        <input
+          type="text"
+          placeholder="Enter your starting address"
+          value={origin}
+          onChange={(e) => setOrigin(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") fetchDirections(origin); }}
+          className="border p-2 rounded w-full"
+          autoComplete="off"
+          inputMode="text"
+        />
+        <button
+          onClick={() => fetchDirections(origin)}
+          className="bg-blue-600 text-white p-2 rounded"
+        >
+          Get Directions
+        </button>
       </div>
+
+      <div className="flex w-full max-w-6xl gap-6">
+        {/* LEFT: Step-by-step directions */}
+        {directions &&
+        <div className="w-1/3 overflow-y-auto max-h-[600px] border p-4 rounded shadow">
+          {directions && directions.routes[0].legs[0].steps.map((step, index) => (
+            <div key={index} className="mb-3 text-sm">
+              <div dangerouslySetInnerHTML={{ __html: step.instructions }} />
+              <div className="text-gray-500">
+                {step.distance?.text} — {step.duration?.text}
+              </div>
+            </div>
+          ))}
+        </div>
+        }
+
+        {/* RIGHT: Map */}
+        <div className={directions ? "w-2/3 h-[600px]" : "w-full flex justify-center h-[600px]"}>
+          <LoadScript 
+            googleMapsApiKey={apiKey}
+            libraries={["marker"]}
+            onLoad={() => setIsMapLoaded(true)}>
+            <GoogleMap
+              center={ destinationLatLng } // Center somewhere reasonable
+              zoom={14}
+              mapContainerStyle={{ height: "100%", width: "100%" }}
+              onLoad={(map) => { mapRef.current = map; }}
+            >
+              {directions ? (
+                <DirectionsRenderer directions={directions} />
+              ) : (
+                <Marker
+                  key="destination-marker"
+                  position={destinationLatLng}
+                  label="*" 
+                />
+              )}
+            </GoogleMap>
+          </LoadScript>
+        </div>
+      </div>
+    </div>
     </>
   );
 }

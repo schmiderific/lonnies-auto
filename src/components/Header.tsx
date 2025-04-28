@@ -2,7 +2,7 @@
 export default function Header() {
   return (
     <>
-      <header className="flex flex-col sm:flex-row py-6 justify-between items-center">
+      <header className="flex flex-col sm:flex-row py-6 px-8 justify-between items-center">
         <div className="text-2xl font-bold text-blue-700">
           <a href="/" className="hover:text-blue-800 transition">
             Lonnie's University Auto
