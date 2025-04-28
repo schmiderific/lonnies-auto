@@ -1,5 +1,6 @@
 // Home.tsx
 import { Helmet } from "react-helmet";
+import lonniesImage from '../assets/lonnies.png';
 
 export default function Home() {
   return (
@@ -29,8 +30,8 @@ export default function Home() {
           </div>
           <div>
             <img
-              src="../assets/lonnies.jpg"
-              alt="Auto Repair Shop"
+              src={lonniesImage}
+              alt="Lonnie's Office"
               className="w-full h-auto rounded-lg shadow"
             />
           </div>

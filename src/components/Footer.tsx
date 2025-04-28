@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // components/Footer.tsx
-const GetDirections = () => {
+const Footer = () => {
   const [origin, setOrigin] = useState("");
+  const navigate = useNavigate();
+  const [isEditable, setIsEditable] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!origin) return;
+  const handleSubmit = () => {
+    if (origin.trim() !== "") {
+      const originEncoded = encodeURIComponent(origin);
+      navigate(`/directions?mapfrom=${originEncoded}`);
+    }
+  };
 
-    const destination = encodeURIComponent(
-      "220 Butler Avenue, Durham, NC 27705",
-    );
-    const encodedOrigin = encodeURIComponent(origin);
-    // const url = `https://www.google.com/maps/dir/?api=1&origin=${encodedOrigin}&destination=${destination}`;
-    const url = `/Directions?api=1&origin=${encodedOrigin}&destination=${destination}`;
-
-    window.open(url, "_blank");
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
   };
 
   return (
@@ -36,35 +39,33 @@ const GetDirections = () => {
         </div>
         <div>
           <h2 className="mb-4 text-2xl font-bold">Get Directions</h2>
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row mt-4 gap-2 sm:items-center"
-          >
+          <div className="flex flex-col sm:flex-row gap-2 w-full max-w-lg">
             <input
               type="text"
               placeholder="Enter your address"
               value={origin}
               onChange={(e) => setOrigin(e.target.value)}
-              className="
-                flex-1
-                w-full sm:w-auto
-                px-4 py-2
-                text-white-900 placeholder-gray-500
-                rounded-lg border border-gray-300
-                focus:outline-none focus:ring-2 focus:ring-blue-500
-              "
+              onKeyDown={handleKeyDown}
+              onFocus={() => setIsEditable(true)}
+              readOnly={!isEditable}
+              className="border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              autoComplete="off"
+              inputMode="text"
+              name="address-input"
+              aria-label="Starting Address"
             />
             <button
-              type="submit"
-              className="px-4 py-2 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+              type="button"
+              onClick={handleSubmit}
+              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded min-w-[150px]"
             >
-              Go
+              Get Directions
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </footer>
   );
 };
 
-export default GetDirections;
+export default Footer;

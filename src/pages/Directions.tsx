@@ -1,7 +1,37 @@
 // Home.tsx
 import { Helmet } from "react-helmet";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Directions() {
+  const [origin, setOrigin] = useState("");
+  const [mapSrc, setMapSrc] = useState("");
+  const location = useLocation();
+
+  const destination = "220 Butler Ave, Durham, NC, 27705"; // Shop's actual address
+  const apiKey = "AIzaSyBZapVwghZDS3WL_eudPVBgmWRHB-dCGEQ"; // Your API key here
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const mapFrom = searchParams.get("mapfrom");
+
+    if (mapFrom) {
+      setOrigin(mapFrom);
+      updateMap(mapFrom);
+    }
+  }, [location.search]);
+
+  const updateMap = (start: string) => {
+    const originEncoded = encodeURIComponent(start);
+    const destinationEncoded = encodeURIComponent(destination);
+    const newMapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${originEncoded}&destination=${destinationEncoded}`;
+    setMapSrc(newMapSrc);
+  };
+
+  const handleGetDirections = () => {
+    updateMap(origin);
+  };
+
   return (
     <>
       <Helmet>
@@ -13,6 +43,43 @@ export default function Directions() {
         <meta property="og:title" content="Home Page Title" />
         {/* Add more meta tags as needed */}
       </Helmet>
+      <div className="min-h-screen flex flex-col items-center justify-start p-6 space-y-6">
+        <h1 className="text-3xl font-bold">Get Directions</h1>
+
+        <div className="w-full max-w-md flex gap-2">
+          <input
+            type="text"
+            placeholder="Enter your address"
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
+            className="border p-2 rounded w-full"
+          />
+          <button
+            onClick={handleGetDirections}
+            className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded"
+          >
+            Get Directions
+          </button>
+        </div>
+
+        {mapSrc && (
+          <div className="w-full max-w-4xl h-[500px] mt-6">
+            <iframe
+              title="Google Map Directions"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              allowFullScreen
+              src={mapSrc}
+              className="rounded shadow-lg"
+            ></iframe>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+  {/* );
       <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
         <h1 className="text-4xl font-bold text-center text-gray-800">
           Directions
@@ -50,32 +117,6 @@ export default function Directions() {
             className="w-full h-full border-0"
           />
         </div>
-
-        <div className="space-y-2 text-lg text-gray-700">
-          <h2 className="text-2xl font-semibold text-gray-800">
-            Driving Directions
-          </h2>
-          <p>
-            <span className="font-semibold">From I-85:</span>
-            Take <span className="font-semibold">Exit 105A</span> onto{" "}
-            <span className="font-semibold">15-501 South</span>. Take the{" "}
-            <span className="font-semibold">first exit</span> for{" "}
-            <span className="font-semibold">Hillsborough Road</span> and turn{" "}
-            <span className="font-semibold">right</span> at the end of the ramp.
-            Then take the <span className="font-semibold">next right</span> onto{" "}
-            <span className="font-semibold">Christian Avenue</span>. Make a{" "}
-            <span className="font-semibold">right on Wortham Street</span> and
-            follow it to the end. Turn{" "}
-            <span className="font-semibold">left onto Butler Avenue</span> —
-            we’ll be just down the road.
-          </p>
-          <p>
-            <span className="font-semibold">From Downtown Durham:</span> Head
-            north on Duke Street, then west on Hillsborough. Take the same
-            directions as above after you cross over 15-501.
-          </p>
-        </div>
       </div>
     </>
-  );
-}
+  ); */}
