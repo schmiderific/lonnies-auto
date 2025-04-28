@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
-import { GoogleMap, LoadScript, DirectionsRenderer, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, DirectionsRenderer, MarkerF } from "@react-google-maps/api";
 
 export default function Directions() {
   const [searchParams] = useSearchParams();
@@ -96,7 +96,6 @@ export default function Directions() {
         <div className={directions ? "w-2/3 h-[600px]" : "w-full flex justify-center h-[600px]"}>
           <LoadScript 
             googleMapsApiKey={apiKey}
-            libraries={["marker"]}
             onLoad={() => setIsMapLoaded(true)}>
             <GoogleMap
               center={ destinationLatLng } // Center somewhere reasonable
@@ -107,11 +106,7 @@ export default function Directions() {
               {directions ? (
                 <DirectionsRenderer directions={directions} />
               ) : (
-                <Marker
-                  key="destination-marker"
-                  position={destinationLatLng}
-                  label="*" 
-                />
+                <MarkerF key="destination-marker" position={destinationLatLng} label="*" />
               )}
             </GoogleMap>
           </LoadScript>
