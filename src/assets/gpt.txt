@@ -1,0 +1,1342 @@
+
+/components
+  Header.tsx
+  Hero.tsx
+  ReviewWall.tsx
+  DirectionsMap.tsx
+  Footer.tsx
+
+/pages
+  index.tsx
+  directions.tsx
+
+
+
+
+// components/Header.tsx
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" className="text-2xl font-bold text-blue-600">YourShopName</a>
+        <nav className="space-x-6 hidden md:flex">
+          <a href="/" className="text-gray-700 hover:text-blue-600">Home</a>
+          <a href="/services" className="text-gray-700 hover:text-blue-600">Services</a>
+          <a href="/reviews" className="text-gray-700 hover:text-blue-600">Reviews</a>
+          <a href="/directions" className="text-gray-700 hover:text-blue-600">Directions</a>
+        </nav>
+        <div className="space-x-4">
+          <a href="/schedule" className="hidden md:inline-block px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">Schedule</a>
+          <a href="tel:9195550192" className="px-4 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition">Call</a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+// components/ReviewWall.tsx
+const reviews = [
+  {
+    name: "Sarah D.",
+    content: "Best service in Durham! Fast, honest, and fair pricing.",
+  },
+  {
+    name: "James P.",
+    content: "They found the issue my dealership missed. Highly recommend!",
+  },
+  {
+    name: "Amanda T.",
+    content: "Super friendly staff and clean waiting area. Will be back!",
+  },
+];
+
+export default function ReviewWall() {
+  return (
+    <section className="bg-gray-50 dark:bg-gray-800 py-16 px-6 md:px-16">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">What Our Customers Say</h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {reviews.map((review, idx) => (
+          <div key={idx} className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow hover:shadow-lg transition">
+            <p className="text-gray-700 dark:text-gray-300">"{review.content}"</p>
+            <p className="mt-4 font-semibold text-blue-600">– {review.name}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// components/Footer.tsx
+export default function Footer() {
+  return (
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-10 px-6 md:px-16">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+        <div>
+          <h3 className="font-bold text-lg mb-2 text-blue-600">YourShopName</h3>
+          <p>1234 Mechanic St<br />Durham, NC 27701</p>
+          <p className="mt-2">(919) 555-0192</p>
+        </div>
+        <div>
+          <h4 className="font-semibold mb-2">Quick Links</h4>
+          <ul className="space-y-1">
+            <li><a href="/services" className="hover:underline">Services</a></li>
+            <li><a href="/directions" className="hover:underline">Directions</a></li>
+            <li><a href="/schedule" className="hover:underline">Schedule</a></li>
+          </ul>
+        </div>
+      </div>
+      <div className="mt-10 text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} YourShopName. All rights reserved.</div>
+    </footer>
+  );
+}
+
+// pages/index.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import ReviewWall from "../components/ReviewWall";
+import Footer from "../components/Footer";
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>YourShopName | Trusted Auto Repair in Durham</title>
+        <meta name="description" content="Durham's top-rated auto repair shop. Honest service, expert mechanics, and fast turnaround." />
+      </Head>
+      <Header />
+      <main>
+        <Hero />
+        <ReviewWall />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+
+
+
+
+// pages/directions.tsx
+import Head from "next/head";
+
+export default function DirectionsPage() {
+  return (
+    <>
+      <Head>
+        <title>Directions to Our Auto Repair Shop | YourShopName</title>
+        <meta name="description" content="Get directions to our auto repair shop in Durham. Find us easily using Google Maps." />
+      </Head>
+      <main className="p-6 md:p-16 space-y-10">
+        <h1 className="text-3xl font-bold">Find Us in Durham</h1>
+
+        <div className="aspect-w-16 aspect-h-9 rounded-2xl shadow overflow-hidden">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=..."
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full h-full border-0"
+          ></iframe>
+        </div>
+
+        <div className="space-y-2">
+          <p><strong>Address:</strong> 1234 Mechanic St, Durham, NC 27701</p>
+          <p><strong>Phone:</strong> (919) 555-0192</p>
+          <p><strong>Hours:</strong> Mon–Fri: 8am–6pm</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-semibold mt-8">Driving Directions</h2>
+          <ul className="list-disc ml-6 mt-4 space-y-2 text-gray-700">
+            <li>From Downtown Durham: Take Main Street east, turn right on Mechanic St...</li>
+            <li>From I-40: Exit at Fayetteville Rd, head north, turn left on Mechanic St...</li>
+            <li>Parking available in front and rear of shop.</li>
+          </ul>
+        </div>
+      </main>
+    </>
+  );
+}
+
+
+
+
+
+// components/Hero.tsx
+export default function Hero() {
+  return (
+    <section className="bg-white dark:bg-gray-900 py-16 px-6 md:px-16">
+      <div className="grid md:grid-cols-2 items-center gap-12">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Reliable Auto Repair in Durham
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+            Honest service. Fair pricing. Fast turnarounds.
+          </p>
+          <div className="flex gap-4">
+            <a href="/schedule" className="bg-blue-600 text-white px-6 py-3 rounded-2xl shadow hover:bg-blue-700 transition">
+              Schedule Now
+            </a>
+            <a href="tel:9195550192" className="border border-blue-600 text-blue-600 px-6 py-3 rounded-2xl hover:bg-blue-50 transition">
+              Call Us
+            </a>
+          </div>
+        </div>
+        <div className="aspect-w-16 aspect-h-9">
+          <video
+            src="/video/shop-tour.mp4"
+            autoPlay
+            muted
+            loop
+            className="w-full rounded-2xl shadow"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+With framer motion animations in review wall
+Placeholder for google review in index.tsx
+Comment for cms or service integrations
+
+// components/Header.tsx
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" className="text-2xl font-bold text-blue-600">YourShopName</a>
+        <nav className="space-x-6 hidden md:flex">
+          <a href="/" className="text-gray-700 hover:text-blue-600">Home</a>
+          <a href="/services" className="text-gray-700 hover:text-blue-600">Services</a>
+          <a href="/reviews" className="text-gray-700 hover:text-blue-600">Reviews</a>
+          <a href="/directions" className="text-gray-700 hover:text-blue-600">Directions</a>
+        </nav>
+        <div className="space-x-4">
+          <a href="/schedule" className="hidden md:inline-block px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">Schedule</a>
+          <a href="tel:9195550192" className="px-4 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition">Call</a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+// components/ReviewWall.tsx
+import { motion } from "framer-motion";
+
+const reviews = [
+  {
+    name: "Sarah D.",
+    content: "Best service in Durham! Fast, honest, and fair pricing.",
+  },
+  {
+    name: "James P.",
+    content: "They found the issue my dealership missed. Highly recommend!",
+  },
+  {
+    name: "Amanda T.",
+    content: "Super friendly staff and clean waiting area. Will be back!",
+  },
+];
+
+export default function ReviewWall() {
+  return (
+    <section className="bg-gray-50 dark:bg-gray-800 py-16 px-6 md:px-16">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">What Our Customers Say</h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {reviews.map((review, idx) => (
+          <motion.div
+            key={idx}
+            className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow hover:shadow-lg transition"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.2 }}
+          >
+            <p className="text-gray-700 dark:text-gray-300">"{review.content}"</p>
+            <p className="mt-4 font-semibold text-blue-600">– {review.name}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// components/Footer.tsx
+export default function Footer() {
+  return (
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-10 px-6 md:px-16">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+        <div>
+          <h3 className="font-bold text-lg mb-2 text-blue-600">YourShopName</h3>
+          <p>1234 Mechanic St<br />Durham, NC 27701</p>
+          <p className="mt-2">(919) 555-0192</p>
+        </div>
+        <div>
+          <h4 className="font-semibold mb-2">Quick Links</h4>
+          <ul className="space-y-1">
+            <li><a href="/services" className="hover:underline">Services</a></li>
+            <li><a href="/directions" className="hover:underline">Directions</a></li>
+            <li><a href="/schedule" className="hover:underline">Schedule</a></li>
+          </ul>
+        </div>
+      </div>
+      <div className="mt-10 text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} YourShopName. All rights reserved.</div>
+    </footer>
+  );
+}
+
+// pages/index.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import ReviewWall from "../components/ReviewWall";
+import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [googleReviews, setGoogleReviews] = useState([]);
+
+  useEffect(() => {
+    // Placeholder for Google Reviews API fetch
+    // fetch('/api/google-reviews').then(res => res.json()).then(setGoogleReviews);
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>YourShopName | Trusted Auto Repair in Durham</title>
+        <meta name="description" content="Durham's top-rated auto repair shop. Honest service, expert mechanics, and fast turnaround." />
+      </Head>
+      <Header />
+      <main>
+        <Hero />
+        <ReviewWall />
+        {/* Placeholder for services or CMS-driven content */}
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+
+
+
+Now has:
+	1.	Hero.tsx – Clean headline and CTA section
+	2.	Schedule.tsx – Simple form users can fill out
+	3.	Services.tsx – CMS-ready service display
+	4.	Google Reviews placeholder – In index.tsx (commented for now)
+
+
+
+// components/Header.tsx
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" className="text-2xl font-bold text-blue-600">YourShopName</a>
+        <nav className="space-x-6 hidden md:flex">
+          <a href="/" className="text-gray-700 hover:text-blue-600">Home</a>
+          <a href="/services" className="text-gray-700 hover:text-blue-600">Services</a>
+          <a href="/reviews" className="text-gray-700 hover:text-blue-600">Reviews</a>
+          <a href="/directions" className="text-gray-700 hover:text-blue-600">Directions</a>
+        </nav>
+        <div className="space-x-4">
+          <a href="/schedule" className="hidden md:inline-block px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">Schedule</a>
+          <a href="tel:9195550192" className="px-4 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition">Call</a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+// components/ReviewWall.tsx
+import { motion } from "framer-motion";
+
+const reviews = [
+  {
+    name: "Sarah D.",
+    content: "Best service in Durham! Fast, honest, and fair pricing.",
+  },
+  {
+    name: "James P.",
+    content: "They found the issue my dealership missed. Highly recommend!",
+  },
+  {
+    name: "Amanda T.",
+    content: "Super friendly staff and clean waiting area. Will be back!",
+  },
+];
+
+export default function ReviewWall() {
+  return (
+    <section className="bg-gray-50 dark:bg-gray-800 py-16 px-6 md:px-16">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">What Our Customers Say</h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {reviews.map((review, idx) => (
+          <motion.div
+            key={idx}
+            className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow hover:shadow-lg transition"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.2 }}
+          >
+            <p className="text-gray-700 dark:text-gray-300">"{review.content}"</p>
+            <p className="mt-4 font-semibold text-blue-600">– {review.name}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// components/Footer.tsx
+export default function Footer() {
+  return (
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-10 px-6 md:px-16">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+        <div>
+          <h3 className="font-bold text-lg mb-2 text-blue-600">YourShopName</h3>
+          <p>1234 Mechanic St<br />Durham, NC 27701</p>
+          <p className="mt-2">(919) 555-0192</p>
+        </div>
+        <div>
+          <h4 className="font-semibold mb-2">Quick Links</h4>
+          <ul className="space-y-1">
+            <li><a href="/services" className="hover:underline">Services</a></li>
+            <li><a href="/directions" className="hover:underline">Directions</a></li>
+            <li><a href="/schedule" className="hover:underline">Schedule</a></li>
+          </ul>
+        </div>
+      </div>
+      <div className="mt-10 text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} YourShopName. All rights reserved.</div>
+    </footer>
+  );
+}
+
+// components/Hero.tsx
+export default function Hero() {
+  return (
+    <section className="bg-blue-50 dark:bg-gray-800 py-20 px-6 md:px-16 text-center">
+      <h1 className="text-4xl md:text-5xl font-bold text-blue-700 dark:text-white mb-4">
+        Reliable Auto Repair in Durham
+      </h1>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        Honest, fast, and affordable service to keep you moving.
+      </p>
+      <a
+        href="/schedule"
+        className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition"
+      >
+        Book an Appointment
+      </a>
+    </section>
+  );
+}
+
+// components/Schedule.tsx
+export default function Schedule() {
+  return (
+    <section className="bg-white dark:bg-gray-900 py-16 px-6 md:px-16">
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">Schedule a Visit</h2>
+      <form className="max-w-xl mx-auto grid gap-4">
+        <input type="text" placeholder="Name" className="p-3 rounded-lg border border-gray-300" />
+        <input type="email" placeholder="Email" className="p-3 rounded-lg border border-gray-300" />
+        <input type="tel" placeholder="Phone" className="p-3 rounded-lg border border-gray-300" />
+        <textarea placeholder="What do you need help with?" rows={4} className="p-3 rounded-lg border border-gray-300"></textarea>
+        <button type="submit" className="bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">Submit</button>
+      </form>
+    </section>
+  );
+}
+
+// components/Services.tsx
+const services = [
+  { title: "Brake Repair", description: "High-quality parts and certified technicians." },
+  { title: "Oil Change", description: "Fast, affordable oil changes while you wait." },
+  { title: "Check Engine Diagnosis", description: "We pinpoint problems quickly and accurately." },
+];
+
+export default function Services() {
+  return (
+    <section className="bg-gray-50 dark:bg-gray-800 py-16 px-6 md:px-16">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">Our Services</h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {services.map((service, idx) => (
+          <div key={idx} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold text-blue-600 mb-2">{service.title}</h3>
+            <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// pages/index.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import ReviewWall from "../components/ReviewWall";
+import Footer from "../components/Footer";
+import Schedule from "../components/Schedule";
+import Services from "../components/Services";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [googleReviews, setGoogleReviews] = useState([]);
+
+  useEffect(() => {
+    // Placeholder for Google Reviews API fetch
+    // fetch('/api/google-reviews').then(res => res.json()).then(setGoogleReviews);
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>YourShopName | Trusted Auto Repair in Durham</title>
+        <meta name="description" content="Durham's top-rated auto repair shop. Honest service, expert mechanics, and fast turnaround." />
+      </Head>
+      <Header />
+      <main>
+        <Hero />
+        <Services />
+        <ReviewWall />
+        <Schedule />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+
+
+
+
+
+
+
+SCAFFOLDING WITH ROUTING
+// pages/index.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import ReviewWall from "../components/ReviewWall";
+import Footer from "../components/Footer";
+import Schedule from "../components/Schedule";
+import Services from "../components/Services";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [googleReviews, setGoogleReviews] = useState([]);
+
+  useEffect(() => {
+    // Placeholder for Google Reviews API fetch
+    // fetch('/api/google-reviews').then(res => res.json()).then(setGoogleReviews);
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>YourShopName | Trusted Auto Repair in Durham</title>
+        <meta name="description" content="Durham's top-rated auto repair shop. Honest service, expert mechanics, and fast turnaround." />
+      </Head>
+      <Header />
+      <main>
+        <Hero />
+        <Services />
+        <ReviewWall />
+        <Schedule />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+// pages/services.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Services from "../components/Services";
+
+export default function ServicesPage() {
+  return (
+    <>
+      <Head>
+        <title>Services | YourShopName</title>
+        <meta name="description" content="Explore all our auto repair services including brake repair, diagnostics, oil changes, and more." />
+      </Head>
+      <Header />
+      <main>
+        <Services />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+// pages/schedule.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Schedule from "../components/Schedule";
+
+export default function SchedulePage() {
+  return (
+    <>
+      <Head>
+        <title>Schedule | YourShopName</title>
+        <meta name="description" content="Book an appointment online for auto repair services at YourShopName in Durham, NC." />
+      </Head>
+      <Header />
+      <main>
+        <Schedule />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+// pages/directions.tsx
+import Head from "next/head";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+export default function DirectionsPage() {
+  return (
+    <>
+      <Head>
+        <title>Directions | YourShopName</title>
+        <meta name="description" content="Find directions to YourShopName auto repair in Durham using our embedded Google Map." />
+      </Head>
+      <Header />
+      <main className="py-16 px-6 md:px-16">
+        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white text-center">Find Us</h1>
+        <div className="max-w-4xl mx-auto">
+          <iframe
+            title="Google Map"
+            className="w-full h-96 rounded-xl shadow"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_EMBED_API_KEY&q=Your+Shop+Address,+Durham+NC"
+          ></iframe>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+
+
+
+
+
+
+
+
+SANITY CMS:
+
+Great! Here’s how to set up Sanity CMS and integrate it with your auto repair website.
+
+⸻
+
+✅ Step 1: Install Sanity CLI & Create Project
+
+First, in your terminal:
+
+npm install -g sanity
+sanity init
+
+Choose:
+	•	Create new project
+	•	Name it something like auto-repair-cms
+	•	Use the Clean project with schema template
+	•	Select Sanity Studio only
+	•	Choose a dataset name (production is fine)
+	•	Deploy it (optional now—you can run locally first)
+
+⸻
+
+✅ Step 2: Define a Schema (e.g., Services)
+
+Inside your Sanity project:
+
+schemas/service.ts
+
+export default {
+  name: 'service',
+  title: 'Service',
+  type: 'document',
+  fields: [
+    { name: 'title', type: 'string', title: 'Title' },
+    { name: 'description', type: 'text', title: 'Description' },
+    { name: 'icon', type: 'string', title: 'Heroicon Name (optional)' }
+  ],
+}
+
+In schemas/index.ts:
+
+import service from './service'
+
+export const schemaTypes = [service]
+
+Then run:
+
+sanity dev
+
+Log into http://localhost:3333 and add some sample services.
+
+⸻
+
+✅ Step 3: Connect Next.js to Sanity
+
+In your Next.js project:
+
+npm install @sanity/client
+
+Create a config file:
+
+lib/sanityClient.ts
+
+import { createClient } from '@sanity/client'
+
+export const sanityClient = createClient({
+  projectId: 'your_project_id', // from sanity.json or your dashboard
+  dataset: 'production',
+  apiVersion: '2023-01-01',
+  useCdn: true,
+})
+
+
+
+⸻
+
+✅ Step 4: Fetch Services in Services.tsx
+
+Update components/Services.tsx to pull from CMS:
+
+'use client'
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+type Service = {
+  _id: string
+  title: string
+  description: string
+  icon?: string
+}
+
+export default function Services() {
+  const [services, setServices] = useState<Service[]>([])
+
+  useEffect(() => {
+    sanityClient
+      .fetch(`*[_type == "service"]{_id, title, description, icon}`)
+      .then(setServices)
+  }, [])
+
+  return (
+    <section className="py-12 px-4 md:px-12 bg-gray-50">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-8">Our Services</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {services.map((s) => (
+            <div key={s._id} className="p-6 bg-white rounded-xl shadow-md">
+              <div className="text-4xl mb-2">{s.icon || '🛠️'}</div>
+              <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+              <p className="text-gray-600">{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+
+⸻
+
+✅ Next Steps
+	1.	✅ Create more schema types (e.g., shop info, hours, testimonials)
+	2.	✅ Deploy Sanity Studio (sanity deploy) to get a live CMS
+	3.	✅ Protect routes or prefetch data using getStaticProps if needed
+
+Would you like help with Sanity Studio deployment, more schema types, or start on the Google Reviews API next?
+
+
+
+
+
+
+
+
+
+SANITY STUDIO SETUP
+
+Absolutely! Let’s deploy your Sanity Studio so you can manage your CMS content from anywhere.
+
+⸻
+
+✅ Step-by-Step: Deploy Sanity Studio
+
+💡 If you haven’t already, cd into your Sanity project folder (not your Next.js app).
+
+1. Run the deploy command
+
+sanity deploy
+
+2. Follow the prompts
+
+You’ll be asked:
+	•	What to name your deployed studio (e.g., yourshop-cms)
+	•	Which domain (defaults to yourshop-cms.sanity.studio)
+
+Once deployed, you’ll see a success message with your live URL:
+
+Studio successfully deployed to https://yourshop-cms.sanity.studio
+
+
+
+⸻
+
+✅ Optional: Add Authentication
+
+By default, Sanity Studio is private—only authenticated users can access it.
+
+To add team members:
+	1.	Visit https://www.sanity.io/manage
+	2.	Go to your project
+	3.	Invite users under the “Users” tab (email-based)
+
+⸻
+
+✅ Update CORS for Next.js Access
+
+To allow your Next.js app to query Sanity:
+	1.	Go to https://www.sanity.io/manage
+	2.	Choose your project → API tab
+	3.	Under CORS origins, add:
+	•	http://localhost:3000 (for local dev)
+	•	https://your-vercel-site.vercel.app (when live)
+
+⸻
+
+Ready to move on to more schema types (e.g., hours, testimonials, etc.) or start on the Google Reviews API?
+
+
+
+
+
+
+
+
+
+
+
+MORE SCHEMA TYPES:
+
+Perfect. Let’s define a few helpful schema types for your auto repair website using Sanity CMS:
+
+⸻
+
+✅ 1. Shop Info (Name, Address, Phone, Email, etc.)
+
+schemas/shopInfo.ts
+
+export default {
+  name: 'shopInfo',
+  title: 'Shop Info',
+  type: 'document',
+  fields: [
+    { name: 'name', type: 'string', title: 'Shop Name' },
+    { name: 'address', type: 'string', title: 'Address' },
+    { name: 'phone', type: 'string', title: 'Phone' },
+    { name: 'email', type: 'string', title: 'Email' },
+    { name: 'googleMapsUrl', type: 'url', title: 'Google Maps Link' },
+  ]
+}
+
+📝 Add a singleton rule by manually entering just one shopInfo document.
+
+⸻
+
+✅ 2. Operating Hours
+
+schemas/hours.ts
+
+export default {
+  name: 'hours',
+  title: 'Hours of Operation',
+  type: 'document',
+  fields: [
+    {
+      name: 'days',
+      type: 'array',
+      title: 'Days',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'day', type: 'string', title: 'Day (e.g., Monday)' },
+            { name: 'open', type: 'string', title: 'Opening Time (e.g., 8:00 AM)' },
+            { name: 'close', type: 'string', title: 'Closing Time (e.g., 5:00 PM)' },
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+⸻
+
+✅ 3. Testimonials
+
+schemas/testimonial.ts
+
+export default {
+  name: 'testimonial',
+  title: 'Testimonial',
+  type: 'document',
+  fields: [
+    { name: 'name', type: 'string', title: 'Customer Name' },
+    { name: 'review', type: 'text', title: 'Review Text' },
+    { name: 'rating', type: 'number', title: 'Rating (1–5)', validation: Rule => Rule.min(1).max(5) },
+  ]
+}
+
+
+
+⸻
+
+✅ 4. Update your schema index
+
+In schemas/index.ts:
+
+import service from './service'
+import shopInfo from './shopInfo'
+import hours from './hours'
+import testimonial from './testimonial'
+
+export const schemaTypes = [service, shopInfo, hours, testimonial]
+
+Then restart your studio:
+
+sanity dev
+
+You’ll now be able to manage all of this in your CMS UI.
+
+⸻
+
+Would you like me to help create React components and fetch logic to display this info on your site?
+Or shall we now move on to setting up real Google Reviews integration?
+
+
+
+
+UPDATED CODE FOR TYPESCRIPT
+// components/ShopInfo.tsx
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+interface ShopInfo {
+  name: string
+  address: string
+  phone: string
+  email: string
+  googleMapsUrl: string
+}
+
+export default function ShopInfo() {
+  const [info, setInfo] = useState<ShopInfo | null>(null)
+
+  useEffect(() => {
+    sanityClient.fetch<ShopInfo>(`*[_type == "shopInfo"][0]`).then(setInfo)
+  }, [])
+
+  if (!info) return null
+
+  return (
+    <section className="py-10 px-6 text-center">
+      <h2 className="text-2xl font-bold">{info.name}</h2>
+      <p className="text-gray-600">{info.address}</p>
+      <p className="text-gray-600">Phone: {info.phone}</p>
+      <p className="text-gray-600">Email: {info.email}</p>
+      <a
+        href={info.googleMapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline"
+      >
+        View on Google Maps
+      </a>
+    </section>
+  )
+}
+
+// components/Hours.tsx
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+interface Day {
+  day: string
+  open: string
+  close: string
+}
+
+export default function Hours() {
+  const [hours, setHours] = useState<Day[]>([])
+
+  useEffect(() => {
+    sanityClient.fetch<Day[]>(`*[_type == "hours"][0].days`).then(setHours)
+  }, [])
+
+  return (
+    <section className="py-10 px-6">
+      <h2 className="text-2xl font-bold mb-4 text-center">Hours of Operation</h2>
+      <ul className="max-w-md mx-auto divide-y divide-gray-200">
+        {hours.map((h, i) => (
+          <li key={i} className="py-2 flex justify-between text-gray-700">
+            <span>{h.day}</span>
+            <span>{h.open} – {h.close}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+// components/Testimonials.tsx
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+interface Testimonial {
+  _id: string
+  name: string
+  review: string
+  rating: number
+}
+
+export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+
+  useEffect(() => {
+    sanityClient
+      .fetch<Testimonial[]>(`*[_type == "testimonial"]{_id, name, review, rating}`)
+      .then(setTestimonials)
+  }, [])
+
+  return (
+    <section className="py-12 px-6 bg-gray-100">
+      <h2 className="text-3xl font-bold text-center mb-8">Customer Testimonials</h2>
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+        {testimonials.map((t) => (
+          <div key={t._id} className="bg-white p-6 rounded-xl shadow-md">
+            <p className="text-gray-800 italic">“{t.review}”</p>
+            <div className="mt-4 text-sm text-gray-600">— {t.name}</div>
+            <div className="text-yellow-500">{'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+
+
+
+
+
+
+Google reviews:
+Got it! We’ll integrate the Google Places API to pull real-time reviews from Lonnie’s University Auto Business Profile.
+
+⸻
+
+✅ Step 1: Set Up Google Cloud API
+	1.	Create a Google Cloud Project:
+	•	Go to the Google Cloud Console.
+	•	Create a new project (e.g., “Lonnie’s University Auto”).
+	2.	Enable the Google Places API:
+	•	Navigate to APIs & Services > Library.
+	•	Search for “Places API” and enable it for your project.
+	3.	Create API Key:
+	•	Go to APIs & Services > Credentials.
+	•	Click Create credentials > API key.
+	•	Restrict the key for security (e.g., set restrictions by HTTP referrers or IPs).
+
+⸻
+
+✅ Step 2: Install Axios
+
+To make API requests, we’ll use axios:
+
+npm install axios
+
+
+
+⸻
+
+✅ Step 3: Create a Google Reviews Component
+
+Create a new component GoogleReviews.tsx:
+
+components/GoogleReviews.tsx
+
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
+interface Review {
+  author_name: string
+  rating: number
+  text: string
+  time: string
+}
+
+const GOOGLE_API_KEY = 'your-google-api-key'  // Replace with your actual API key
+const PLACE_ID = 'your-business-place-id'  // Replace with your Google Place ID
+
+export default function GoogleReviews() {
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          `https://maps.googleapis.com/maps/api/place/details/json?placeid=${PLACE_ID}&fields=reviews&key=${GOOGLE_API_KEY}`
+        )
+        setReviews(response.data.result.reviews)
+      } catch (error) {
+        console.error('Error fetching reviews:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchReviews()
+  }, [])
+
+  if (loading) return <p>Loading reviews...</p>
+  if (reviews.length === 0) return <p>No reviews found.</p>
+
+  return (
+    <section className="py-12 px-6 bg-gray-100">
+      <h2 className="text-3xl font-bold text-center mb-8">Google Reviews</h2>
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+        {reviews.map((review, index) => (
+          <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+            <div className="flex items-center mb-4">
+              <div className="text-lg font-semibold">{review.author_name}</div>
+              <div className="ml-2 text-yellow-500">{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</div>
+            </div>
+            <p className="text-gray-800">{review.text}</p>
+            <div className="mt-4 text-sm text-gray-600">{new Date(Number(review.time) * 1000).toLocaleDateString()}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+Key Details:
+	•	GOOGLE_API_KEY: Your API key from Google Cloud.
+	•	PLACE_ID: Find the Place ID from Google’s Place ID Finder.
+	•	Reviews: The reviews object includes the author’s name, rating, review text, and the time of the review.
+
+⸻
+
+✅ Step 4: Use Google Reviews Component
+
+Add the component where you want to display reviews, e.g., in index.tsx:
+
+import GoogleReviews from './components/GoogleReviews'
+
+export default function HomePage() {
+  return (
+    <div>
+      <h1>Welcome to Lonnie's University Auto</h1>
+      <GoogleReviews />
+    </div>
+  )
+}
+
+
+
+⸻
+
+✅ Step 5: Test & Deploy
+	1.	Run your app locally using npm run dev and check that reviews are showing up.
+	2.	Once everything looks good, deploy your app on Vercel or your preferred platform.
+
+⸻
+
+Now, you’re all set! This will pull real-time Google reviews into your website. Let me know if you’d like to tweak anything or need help deploying!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// components/ShopInfo.tsx
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+interface ShopInfo {
+  name: string
+  address: string
+  phone: string
+  email: string
+  googleMapsUrl: string
+}
+
+export default function ShopInfo() {
+  const [info, setInfo] = useState<ShopInfo | null>(null)
+
+  useEffect(() => {
+    sanityClient.fetch<ShopInfo>(`*[_type == "shopInfo"][0]`).then(setInfo)
+  }, [])
+
+  if (!info) return null
+
+  return (
+    <section className="py-10 px-6 text-center">
+      <h2 className="text-2xl font-bold">{info.name}</h2>
+      <p className="text-gray-600">{info.address}</p>
+      <p className="text-gray-600">Phone: {info.phone}</p>
+      <p className="text-gray-600">Email: {info.email}</p>
+      <a
+        href={info.googleMapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline"
+      >
+        View on Google Maps
+      </a>
+    </section>
+  )
+}
+
+// components/Hours.tsx
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+interface Day {
+  day: string
+  open: string
+  close: string
+}
+
+export default function Hours() {
+  const [hours, setHours] = useState<Day[]>([])
+
+  useEffect(() => {
+    sanityClient.fetch<Day[]>(`*[_type == "hours"][0].days`).then(setHours)
+  }, [])
+
+  return (
+    <section className="py-10 px-6">
+      <h2 className="text-2xl font-bold mb-4 text-center">Hours of Operation</h2>
+      <ul className="max-w-md mx-auto divide-y divide-gray-200">
+        {hours.map((h, i) => (
+          <li key={i} className="py-2 flex justify-between text-gray-700">
+            <span>{h.day}</span>
+            <span>{h.open} – {h.close}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+// components/Testimonials.tsx
+import { useEffect, useState } from 'react'
+import { sanityClient } from '../lib/sanityClient'
+
+interface Testimonial {
+  _id: string
+  name: string
+  review: string
+  rating: number
+}
+
+export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+
+  useEffect(() => {
+    sanityClient
+      .fetch<Testimonial[]>(`*[_type == "testimonial"]{_id, name, review, rating}`)
+      .then(setTestimonials)
+  }, [])
+
+  return (
+    <section className="py-12 px-6 bg-gray-100">
+      <h2 className="text-3xl font-bold text-center mb-8">Customer Testimonials</h2>
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+        {testimonials.map((t) => (
+          <div key={t._id} className="bg-white p-6 rounded-xl shadow-md">
+            <p className="text-gray-800 italic">“{t.review}”</p>
+            <div className="mt-4 text-sm text-gray-600">— {t.name}</div>
+            <div className="text-yellow-500">{'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
