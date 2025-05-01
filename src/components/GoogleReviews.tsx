@@ -43,8 +43,8 @@ interface Review {
   time: string
 }
 
-const GOOGLE_API_KEY = 'your-google-api-key'  // Replace with your actual API key
-const PLACE_ID = 'your-business-place-id'  // Replace with your Google Place ID
+const GOOGLE_API_KEY = 'AIzaSyDz1Cg_1tUcenCBAzIxoUb9QZ4WRz9IbRQ'  // Replace with your actual API key
+const PLACE_ID = 'ChIJHcaFz0fhrIkRHeSFhQfeu3g'  // Replace with your Google Place ID
 
 export default function GoogleReviews() {
   const [reviews, setReviews] = useState<Review[]>([])
