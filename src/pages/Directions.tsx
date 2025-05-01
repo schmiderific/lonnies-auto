@@ -14,7 +14,8 @@ export default function Directions() {
 
   const destinationLatLng = { lat: 36.02318, lng: -78.94929 }; // Shop's Lat/Long
   const destination = "220 Butler Ave, Durham, NC, 27705"; // Shop's actual address
-  const apiKey = "AIzaSyBZapVwghZDS3WL_eudPVBgmWRHB-dCGEQ"; // Your API key here
+  // const apiKey = "AIzaSyBZapVwghZDS3WL_eudPVBgmWRHB-dCGEQ"; 
+  const apiKey = "AIzaSyDz1Cg_1tUcenCBAzIxoUb9QZ4WRz9IbRQ";
 
   const fetchDirections = async (start: string) => {
     if (!start || !isMapLoaded) return;
@@ -57,34 +58,46 @@ export default function Directions() {
         <meta property="og:title" content="Home Page Title" />
         {/* Add more meta tags as needed */}
       </Helmet>
-      <div className="flex flex-col items-center p-4">
-      <div className="flex w-full max-w-4xl mb-4 gap-2">
+      <div
+        className="flex flex-col p-4 items-center">
+      <div
+        className="flex w-full max-w-4xl mb-4 gap-2"
+      >
         <input
           type="text"
           placeholder="Enter your starting address"
           value={origin}
           onChange={(e) => setOrigin(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") fetchDirections(origin); }}
-          className="border p-2 rounded w-full"
           autoComplete="off"
           inputMode="text"
+          className="w-full p-2 border rounded"
         />
         <button
           onClick={() => fetchDirections(origin)}
-          className="bg-blue-600 text-white p-2 rounded"
+          className="p-2 text-white bg-blue-600 rounded"
         >
           Get Directions
         </button>
       </div>
 
-      <div className="flex w-full max-w-6xl gap-6">
+      <div
+        className="flex w-full max-w-6xl gap-6"
+      >
         {/* LEFT: Step-by-step directions */}
         {directions &&
-        <div className="w-1/3 overflow-y-auto max-h-[600px] border p-4 rounded shadow">
+        <div
+          className="overflow-y-auto w-1/3 max-h-[600px] p-4 border rounded shadow"
+        >
           {directions && directions.routes[0].legs[0].steps.map((step, index) => (
-            <div key={index} className="mb-3 text-sm">
+            <div
+              key={index}
+              className="mb-3 text-sm"
+            >
               <div dangerouslySetInnerHTML={{ __html: step.instructions }} />
-              <div className="text-gray-500">
+              <div
+                className="text-gray-500"
+              >
                 {step.distance?.text} — {step.duration?.text}
               </div>
             </div>
@@ -93,7 +106,8 @@ export default function Directions() {
         }
 
         {/* RIGHT: Map */}
-        <div className={directions ? "w-2/3 h-[600px]" : "w-full flex justify-center h-[600px]"}>
+        <div
+          className={directions ? "w-2/3 h-[600px]" : "w-full flex justify-center h-[600px]"}>
           <LoadScript 
             googleMapsApiKey={apiKey}
             onLoad={() => setIsMapLoaded(true)}>
@@ -112,7 +126,7 @@ export default function Directions() {
           </LoadScript>
         </div>
       </div>
-    </div>
+      </div>
     </>
   );
 }

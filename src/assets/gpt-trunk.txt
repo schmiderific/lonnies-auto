@@ -1,4 +1,12 @@
 
+
+API Key: AIzaSyDz1Cg_1tUcenCBAzIxoUb9QZ4WRz9IbRQ
+
+
+
+
+
+
 /components
   Header.tsx
   Hero.tsx
