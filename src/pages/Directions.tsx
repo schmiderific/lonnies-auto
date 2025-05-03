@@ -14,8 +14,7 @@ export default function Directions() {
 
   const destinationLatLng = { lat: 36.02318, lng: -78.94929 }; // Shop's Lat/Long
   const destination = "220 Butler Ave, Durham, NC, 27705"; // Shop's actual address
-  // const apiKey = "AIzaSyBZapVwghZDS3WL_eudPVBgmWRHB-dCGEQ"; 
-  const apiKey = "AIzaSyDz1Cg_1tUcenCBAzIxoUb9QZ4WRz9IbRQ";
+  const apiKey = process.env.GOOGLE_API_KEY;
 
   const fetchDirections = async (start: string) => {
     if (!start || !isMapLoaded) return;
