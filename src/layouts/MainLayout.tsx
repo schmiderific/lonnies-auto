@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Services from "../components/Services";
-import GoogleReviews from "../components/GoogleReviews";
+// import GoogleReviews from "../components/GoogleReviews";
 import { ReactNode } from "react";
 
 interface MainLayoutProps {
@@ -13,7 +13,7 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <GoogleReviews />
+      {/* <GoogleReviews /> */}
       <Services />
       <Header />
       <Nav />

@@ -1,33 +1,27 @@
-// Add the component where you want to display reviews, e.g., in index.tsx:
+// NEED TO SWITCH TO THIS.  OTHER APPROACH HAS CORS ISSUES
 
-// import GoogleReviews from './components/GoogleReviews'
+// Use the Featurable API with react-google-reviews (Recommended)
+// 	•	No server-side code required
+// 	•	No CORS issues
+// 	•	Fetches more than 5 reviews
+// 	•	Simple React integration
+// Install the library:
 
-// export default function HomePage() {
+// npm install react-google-reviews
+
+// Usage in your React component:
+
+// import { ReactGoogleReviews } from "react-google-reviews";
+// import "react-google-reviews/dist/index.css";
+
+// function Reviews() {
+//   const featurableWidgetId = "YOUR_FEATURABLE_WIDGET_ID"; // Get this from Featurable.com
 //   return (
-//     <div>
-//       <h1>Welcome to Lonnie's University Auto</h1>
-//       <GoogleReviews />
-//     </div>
-//   )
+//     <ReactGoogleReviews layout="carousel" featurableId={featurableWidgetId} />
+//   );
 // }
 
-// Key Details:
-// 	•	GOOGLE_API_KEY: Your API key from Google Cloud.
-// 	•	PLACE_ID: Find the Place ID from Google’s Place ID Finder.
-// 	•	Reviews: The reviews object includes the author’s name, rating, review text, and the time of the review.
-
-
-// ✅ Step 1: Set Up Google Cloud API
-// 	1.	Create a Google Cloud Project:
-// 	•	Go to the Google Cloud Console.
-// 	•	Create a new project (e.g., “Lonnie’s University Auto”).
-// 	2.	Enable the Google Places API:
-// 	•	Navigate to APIs & Services > Library.
-// 	•	Search for “Places API” and enable it for your project.
-// 	3.	Create API Key:
-// 	•	Go to APIs & Services > Credentials.
-// 	•	Click Create credentials > API key.
-// 	•	Restrict the key for security (e.g., set restrictions by HTTP referrers or IPs).
+// Sign up at Featurable.com, create a widget, and use the widget ID.
 
 
 
@@ -43,8 +37,10 @@ interface Review {
   time: string
 }
 
-const GOOGLE_API_KEY = 'AIzaSyDz1Cg_1tUcenCBAzIxoUb9QZ4WRz9IbRQ'  // Replace with your actual API key
-const PLACE_ID = 'ChIJHcaFz0fhrIkRHeSFhQfeu3g'  // Replace with your Google Place ID
+
+const GOOGLE_API_KEY = 'AIzaSyCUSrwzErPPXGtjzucOcaBm_NW4xi49oHc'  // Replace with your actual API key
+// const GOOGLE_API_KEY = 'AIzaSyDz1Cg_1tUcenCBAzIxoUb9QZ4WRz9IbRQ'  // Replace with your actual API key
+const PLACE_ID = 'ChIJtdV_BDjhrIkRQsx43uo0vN0'  // Replace with your Google Place ID
 
 export default function GoogleReviews() {
   const [reviews, setReviews] = useState<Review[]>([])
@@ -54,7 +50,7 @@ export default function GoogleReviews() {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `https://maps.googleapis.com/maps/api/place/details/json?placeid=${PLACE_ID}&fields=reviews&key=${GOOGLE_API_KEY}`
+          `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,reviews&key=${GOOGLE_API_KEY}`
         )
         setReviews(response.data.result.reviews)
       } catch (error) {
