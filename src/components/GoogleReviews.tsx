@@ -38,8 +38,8 @@ interface Review {
 }
 
 
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-const PLACE_ID = process.env.GOOGLE_PLACE_ID;
+const GOOGLE_API_KEY = import.meta.env.process.env.VITE_GOOGLE_API_KEY;
+const PLACE_ID = import.meta.env.VITE_GOOGLE_PLACE_ID;
 
 export default function GoogleReviews() {
   const [reviews, setReviews] = useState<Review[]>([])
