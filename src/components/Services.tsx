@@ -19,19 +19,22 @@ export default function Services() {
   }, [])
 
   return (
-    <section className="py-12 px-4 md:px-12 bg-gray-50">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Our Services</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div key={s._id} className="p-6 bg-white rounded-xl shadow-md">
-              <div className="text-4xl mb-2">{s.icon || '🛠️'}</div>
-              <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-              <p className="text-gray-600">{s.description}</p>
-            </div>
+<section id="services" className="py-12 bg-white">
+<h2 className="mb-8 text-3xl font-bold text-center text-gray-900">
+  Our Services
+</h2>
+<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+{services.map((s) => (
+<div key={s._id} className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
+    <h3 className="mb-2 text-xl font-semibold text-blue-700">
+      {s.title}
+    </h3>
+    <p className="text-gray-700">
+      {s.description}
+    </p>
+  </div>
           ))}
-        </div>
-      </div>
-    </section>
-  )
+</div>
+</section>
+  );
 }

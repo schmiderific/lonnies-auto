@@ -1,5 +1,6 @@
 // Home.tsx
 import { Helmet } from "react-helmet";
+import Services from '../components/Services'
 import lonniesImage from '../assets/lonnies.png';
 
 export default function Home() {
@@ -37,67 +38,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="services" className="py-12 bg-white">
-        <h2 className="mb-8 text-3xl font-bold text-center text-gray-900">
-          Our Services
-        </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="mb-2 text-xl font-semibold text-blue-700">
-              Brake Repair
-            </h3>
-            <p className="text-gray-700">
-              We offer expert diagnostics and fast brake repairs using quality
-              parts you can trust.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="mb-2 text-xl font-semibold text-blue-700">
-              Oil Changes
-            </h3>
-            <p className="text-gray-700">
-              Quick, clean, and affordable oil changes to keep your engine
-              running smoothly.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="mb-2 text-xl font-semibold text-blue-700">
-              Diagnostics
-            </h3>
-            <p className="text-gray-700">
-              Using state-of-the-art tools to identify and solve car problems
-              fast.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="mb-2 text-xl font-semibold text-blue-700">
-              Tire Services
-            </h3>
-            <p className="text-gray-700">
-              Tire rotations, repairs, and replacements to extend tire life and
-              improve safety.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="mb-2 text-xl font-semibold text-blue-700">
-              Scheduled Maintenance
-            </h3>
-            <p className="text-gray-700">
-              Stay ahead of costly repairs with regular maintenance tailored to
-              your vehicle.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="mb-2 text-xl font-semibold text-blue-700">
-              AC & Heating
-            </h3>
-            <p className="text-gray-700">
-              Make sure your cabin stays cool in summer and warm in winter with
-              expert HVAC service.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Services/>
       <section id="reviews" className="py-12 bg-gray-100">
         <h2 className="mb-8 text-3xl font-bold text-center text-gray-900">
           What Our Customers Say

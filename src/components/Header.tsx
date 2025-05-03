@@ -1,4 +1,7 @@
 // components/Header.tsx
+
+import ShopInfo from "../components/ShopInfo";
+
 export default function Header() {
   return (
     <>
@@ -9,13 +12,7 @@ export default function Header() {
           </a>
         </div>
         <div className="mt-4 sm:mt-0 text-sm text-gray-600 text-center sm:text-right">
-          <p>
-            Call Us:{" "}
-            <a href="tel:1234567890" className="text-blue-600 hover:underline">
-              123-456-7890
-            </a>
-          </p>
-          <p>123 Main St, Anytown USA</p>
+          <ShopInfo/>
         </div>
       </header>
     </>
