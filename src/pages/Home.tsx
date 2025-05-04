@@ -1,7 +1,7 @@
 // Home.tsx
 import { Helmet } from "react-helmet";
 import Services from '../components/Services'
-import lonniesImage from '../assets/lonnies.png';
+import LonniesShopFront from '../assets/LonniesShopFront.png';
 
 export default function Home() {
   return (
@@ -31,8 +31,8 @@ export default function Home() {
           </div>
           <div>
             <img
-              src={lonniesImage}
-              alt="Lonnie's Office"
+              src={LonniesShopFront}
+              alt="Lonnie's Shop Front"
               className="w-full h-auto rounded-lg shadow"
             />
           </div>
