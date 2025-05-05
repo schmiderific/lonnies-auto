@@ -1,0 +1,110 @@
+SANITY CMS:
+
+Great! Here’s how to set up Sanity CMS and integrate it with your auto repair website.
+
+⸻
+
+✅ Step 1: Install Sanity CLI & Create Project
+
+First, in your terminal:
+
+npm install -g sanity
+sanity init
+
+Choose:
+	•	Create new project
+	•	Name it something like auto-repair-cms
+	•	Use the Clean project with schema template
+	•	Select Sanity Studio only
+	•	Choose a dataset name (production is fine)
+	•	Deploy it (optional now—you can run locally first)
+
+⸻
+
+✅ Step 2: Define a Schema (e.g., Services)
+
+sanity dev
+
+Log into http://localhost:3333 and add some sample services.
+
+⸻
+
+✅ Step 3: Connect Next.js to Sanity
+
+In your Next.js project:   
+
+npm install @sanity/client  ##################### NOT WORKING
+
+Create a config file:
+
+lib/sanityClient.ts
+
+import { createClient } from '@sanity/client'
+
+export const sanityClient = createClient({
+  projectId: 'your_project_id', // from sanity.json or your dashboard
+  dataset: 'production',
+  apiVersion: '2023-01-01',
+  useCdn: true,
+})
+
+
+
+	3.	✅ Protect routes or prefetch data using getStaticProps if needed
+
+
+SANITY STUDIO SETUP
+
+Absolutely! Let’s deploy your Sanity Studio so you can manage your CMS content from anywhere.
+
+⸻
+
+✅ Step-by-Step: Deploy Sanity Studio
+
+💡 If you haven’t already, cd into your Sanity project folder (not your Next.js app).
+
+1. Run the deploy command
+
+sanity deploy
+
+2. Follow the prompts
+
+You’ll be asked:
+	•	What to name your deployed studio (e.g., yourshop-cms)
+	•	Which domain (defaults to yourshop-cms.sanity.studio)
+
+Once deployed, you’ll see a success message with your live URL:
+
+Studio successfully deployed to https://yourshop-cms.sanity.studio
+
+
+
+⸻
+
+✅ Optional: Add Authentication
+
+By default, Sanity Studio is private—only authenticated users can access it.
+
+To add team members:
+	1.	Visit https://www.sanity.io/manage
+	2.	Go to your project
+	3.	Invite users under the “Users” tab (email-based)
+
+⸻
+
+✅ Update CORS for Next.js Access
+
+To allow your Next.js app to query Sanity:
+	1.	Go to https://www.sanity.io/manage
+	2.	Choose your project → API tab
+	3.	Under CORS origins, add:
+	•	http://localhost:3000 (for local dev)
+	•	https://your-vercel-site.vercel.app (when live)
+
+
+
+To run: 
+
+sanity dev
+
+

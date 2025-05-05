@@ -1,0 +1,1 @@
+Use  google.maps.marker.AdvancedMarkerElement instead of MarkerF in Directions
