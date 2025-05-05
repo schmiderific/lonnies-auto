@@ -28,7 +28,6 @@
 // components/GoogleReviews.tsx
 
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 
 interface Review {
   author_name: string
@@ -37,28 +36,22 @@ interface Review {
   time: string
 }
 
-
-const GOOGLE_API_KEY = import.meta.env.process.env.VITE_GOOGLE_API_KEY;
-const PLACE_ID = import.meta.env.VITE_GOOGLE_PLACE_ID;
-
 export default function GoogleReviews() {
   const [reviews, setReviews] = useState<Review[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchReviews = async () => {
-      try {
-        const response = await axios.get(
-          `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,reviews&key=${GOOGLE_API_KEY}`
-        )
-        setReviews(response.data.result.reviews)
-      } catch (error) {
-        console.error('Error fetching reviews:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
+        try {
+          const response = await fetch(`/api/get-reviews`);
+          const data = await response.json();
+          setReviews(data.reviews);
+        } catch (error) {
+          console.error('Error fetching reviews:', error);
+        } finally {
+          setLoading(false)
+        }
+      };
     fetchReviews()
   }, [])
 

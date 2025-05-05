@@ -155,8 +155,7 @@ export default function Header() {
           </div>
         )}
       </header>
-      <div className="bg-blue-900 text-blue-50 text-sm py-4 px-4 font-raleway">
-      </div>
+      <div className="bg-blue-900 text-blue-50 text-sm py-4 px-4 font-raleway"/>
     </>
   );
 }
