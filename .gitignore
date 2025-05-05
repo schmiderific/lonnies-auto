@@ -30,3 +30,4 @@ amplifyconfiguration*
 
 # keys
 .env
+.vercel

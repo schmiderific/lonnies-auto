@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
   const GOOGLE_API_KEY = process.env.VITE_GOOGLE_API_KEY;
-  const GOOGLE_PLACE_ID = process.env.GOOGLE_PLACE_ID;
+  const GOOGLE_PLACE_ID = process.env.VITE_GOOGLE_PLACE_ID;
 
   try {
     const response = await axios.get(
