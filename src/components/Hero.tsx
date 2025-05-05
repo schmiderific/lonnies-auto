@@ -11,6 +11,14 @@ export default function Hero() {
                 Right Around the Corner
               </span>
             </h1>
+            <div className="flex justify-center mb-10">
+                <a
+                href="#contact"
+                className="inline-block text-center bg-amber-500 text-white font-semibold py-2 px-4 rounded-xl shadow hover:bg-amber-600 transition"
+                >
+                Book Appointment
+                </a>
+            </div>
             <p className="mb-6 text-base text-gray-700">
               Conveniently located in the heart of Durham, right off the 15-501 exit to Hillsborough Road, 
               we’re your{' '}
@@ -69,14 +77,6 @@ export default function Hero() {
               
               to quickly assess your vehicle.
             </p>
-            <div className="flex justify-center">
-                <a
-                href="#contact"
-                className="inline-block text-center bg-amber-500 text-white font-semibold py-2 px-4 rounded-xl shadow hover:bg-amber-600 transition"
-                >
-                Book Appointment
-                </a>
-            </div>
           </div>
           <div>
             <img
