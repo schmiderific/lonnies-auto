@@ -27,7 +27,6 @@ export default function GoogleReviews() {
           const response = await fetch(`/api/get-reviews`);
           const data = await response.json();
           setReviews(data.reviews);
-          console.log(`OVERALL RATING ${Object.keys(data)}`);
         } catch (error) {
           console.error('Error fetching reviews:', error);
         } finally {
@@ -38,7 +37,6 @@ export default function GoogleReviews() {
   }, [])
 
   if (loading) return <p>Loading reviews...</p>
-  if (reviews.length === 0) return <p>No reviews found.</p>
 
   return (
 <section className="py-5 px-6 bg-gray-100">
@@ -50,7 +48,7 @@ export default function GoogleReviews() {
         </a>
   </h2>
   <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-    {reviews.slice(0, 5).map((review, index) => (
+    {reviews?.length && reviews.slice(0, 5).map((review, index) => (
       <div key={index} className="bg-white p-6 rounded-xl shadow-md">
         {/* Stars above reviewer name */}
         <div className="flex flex-col items-center mb-2">
@@ -68,6 +66,7 @@ export default function GoogleReviews() {
         </div>
       </div>
     ))}
+    {!reviews?.length && <div className="text-center mb-2 py-5">No reviews available.</div>}
   </div>
 </section>
   )
