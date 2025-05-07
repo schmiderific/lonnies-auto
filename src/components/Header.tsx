@@ -87,7 +87,7 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-blue-50 shadow-md top-0 z-40">
+      <header className="shadow-md top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-3 items-center">
           {/* Left: Logo */}
           <a href="/" className="flex items-center space-x-2">

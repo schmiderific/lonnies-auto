@@ -1,7 +1,6 @@
 // layouts/MainLayout.tsx
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-// import GoogleReviews from "../components/GoogleReviews";
 import { ReactNode } from "react";
 
 interface MainLayoutProps {
@@ -11,10 +10,11 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      {/* <GoogleReviews /> */}
+      <div className="min-h-screen bg-gray-100 bg-[url('/dark-wall.png')] bg-repeat">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
+      </div>
     </>
   );
 }
