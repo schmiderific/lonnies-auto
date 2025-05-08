@@ -1,10 +1,39 @@
 import LonniesShopFront from '../assets/LonniesShopFront.png';
+import { useEffect, useState } from "react";
+
+const brandSets = [
+  "Volkswagen BMW",
+  "Mercedes Audi",
+  "Toyota Lexus",
+  "Honda Acura",
+  "Nissan Infinity",
+  "Ford Lincoln",
+  "Chrysler Ram Jeep",
+  "Chevrolet Cadillac"
+];
 
 export default function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % brandSets.length);
+    }, 3000); // Change brand set every 3 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
       <section className="bg-gray-100 rounded-lg relative shadow">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="p-8">
+          
+            {/* Animated brand display */}
+            <div className="mb-10 text-4xl text-center font-bold text-gray-900">
+              <span className="font-roboto text-xl font-semibold text-blue-600 transition-opacity duration-700 ease-in-out">
+                {brandSets[index]}
+              </span>
+            </div>
+
             <h1 className="mb-10 text-4xl text-center font-bold text-gray-900">
               Reliable Auto Repair
               <span className="block">
