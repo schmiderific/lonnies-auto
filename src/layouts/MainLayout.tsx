@@ -10,7 +10,7 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <div className="min-h-screen bg-gray-100 bg-[url('/dark-wall.png')] bg-repeat">
+      <div className="min-h-screen bg-gray-100 bg-[url('/bg/dark-wall.png')] bg-repeat">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

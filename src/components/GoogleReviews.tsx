@@ -39,7 +39,7 @@ export default function GoogleReviews() {
   if (loading) return <p>Loading reviews...</p>
 
   return (
-<section className="py-5 px-6 bg-gray-100">
+<section className="py-5 px-6">
   <h2 className="text-3xl font-bold text-center mb-2 py-5">
     <a
       href={`https://search.google.com/local/writereview?placeid=${placeId}`} 
@@ -49,7 +49,7 @@ export default function GoogleReviews() {
   </h2>
   <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
     {reviews?.length && reviews.slice(0, 5).map((review, index) => (
-      <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+      <div key={index} className="bg-gray-400 p-6 rounded-xl shadow-md">
         {/* Stars above reviewer name */}
         <div className="flex flex-col items-center mb-2">
           <div className="text-yellow-500 text-lg mb-1">

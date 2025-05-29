@@ -23,13 +23,13 @@ export default function Hero() {
   }, []);
 
   return (
-      <section className="bg-gray-100 rounded-lg relative shadow">
+      <section className="rounded-lg relative shadow">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="p-8">
           
             {/* Animated brand display */}
             <div className="mb-10 text-4xl text-center font-bold text-gray-900">
-              <span className="font-roboto text-xl font-semibold text-blue-600 transition-opacity duration-700 ease-in-out">
+              <span className="font-roboto text-4xl font-semibold text-blue-600 transition-opacity duration-700 ease-in-out">
                 {brandSets[index]}
               </span>
             </div>
@@ -49,62 +49,41 @@ export default function Hero() {
                 </a>
             </div>
             <p className="mb-6 text-base text-gray-700">
-              Conveniently located in the heart of Durham, right off the 15-501 exit to Hillsborough Road, 
-              we’re your{' '}
-
-              <span className="font-bold text-blue-500">
-                  trusted, full-service auto repair shop
-              </span>. 
-
+              Conveniently located in the heart of Durham, right off the 15-501 exit to 
+		          Hillsborough Road, we’re your trusted, full-service auto repair shop.
               Our experienced team works on{' '}
 
               <span className="font-bold text-blue-500">
                   domestic, Asian, and German vehicles
               </span>
 
-              -including{' '}
+              -including Volkswagen, BMW, Mercedes, and Audi
+              -and specializes in cars from the year 2000 onward. We offer{' '}
+              
+              <span className="font-bold text-blue-500">
+                state-of-the-art{' '}
+              </span>
+              
+              repairs, tires, alignments, state inspections,
+              and advanced diagnostics.
+              Many customers have relied on us for{' '}
 
               <span className="font-bold text-blue-500">
-                  Volkswagen, BMW, Mercedes, and Audi
+		              over 20 years. 
               </span>
 
-              -and specializes in cars from 2000 onward. We offer{' '}
-
-              <span className="font-bold text-blue-500">
-                  state-of-the-art repairs, tires, alignments, state inspections,
-              </span> 
-
-              and{' '}
+      		    With today’s vehicles more advanced than ever, we have the
+              tools and expertise to handle even the toughest jobs and keep 
+		          you on the road. If your{' '}
               
               <span className="font-bold text-blue-500">
-                  advanced diagnostics
-              </span>-
+                  check engine light{' '}
+              </span>
 
-              all under one roof. Many customers have relied on us for{' '}
-
-              <span className="font-bold text-blue-500">
-                  over 20 years
-              </span>. 
-
-              With today’s vehicles more advanced than ever, we have the{' '}
-
-              <span className="font-bold text-blue-500">
-                  tools and expertise
-              </span> 
-
-              to handle even the toughest jobs and keep you on the road.{' '}
-
-              <span className="font-bold text-blue-500">
-                  If your check engine light is on, stop by anytime-no appointment needed
-              </span>, 
-
-              and we’ll provide a{' '}
-              
-              <span className="font-bold text-blue-500">
-                complimentary diagnostic scan
-              </span> 
-              
+              is on, stop by anytime-
+		          no appointment needed and we’ll provide a complimentary diagnostic scan
               to quickly assess your vehicle.
+
             </p>
           </div>
           <div>
